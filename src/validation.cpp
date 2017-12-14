@@ -357,6 +357,24 @@ static bool IsCurrentForFeeEstimation()
     return true;
 }
 
+
+bool static IsBTGHardForkEnabled(int nHeight, const Consensus::Params& params) {
+    return nHeight >= params.BTGHeight;
+}
+
+bool IsBTGHardForkEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params) {
+    if (pindexPrev == nullptr) {
+        return false;
+    }
+
+    return IsBTGHardForkEnabled(pindexPrev->nHeight, params);
+}
+
+bool IsBTGHardForkEnabledForCurrentBlock(const Consensus::Params& params) {
+    AssertLockHeld(cs_main);
+    return IsBTGHardForkEnabled(chainActive.Tip(), params);
+}
+
 /* Make mempool consistent after a reorg, by re-adding or recursively erasing
  * disconnected block transactions from the mempool, and also removing any
  * other transactions from the mempool that are no longer valid given the new
@@ -1615,6 +1633,12 @@ static unsigned int GetBlockScriptFlags(const CBlockIndex* pindex, const Consens
         flags |= SCRIPT_VERIFY_NULLDUMMY;
     }
 
+  if (IsBTGHardForkEnabled(pindex->pprev, consensusparams)) {
+        flags |= SCRIPT_VERIFY_STRICTENC;
+    } else {
+        flags |= SCRIPT_ALLOW_NON_FORKID;
+    }
+	
     return flags;
 }
 
