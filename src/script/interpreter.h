@@ -120,7 +120,7 @@ enum
 	//SCRIPT_ENABLE_SIGHASH_FORKID = (1U << 16),
 
 	//Allow NON_FORKID in legacy tests and blocks under alt hark fork height
-	SCRIPRT_ALLOW_NON_FORKID = (1U << 17),
+    SCRIPT_ALLOW_NON_FORKID = (1U << 17),
 
 	
 };

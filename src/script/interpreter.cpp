@@ -1294,7 +1294,7 @@ bool TransactionSignatureChecker::CheckSig(const std::vector<unsigned char>& vch
     if (vchSig.empty())
         return false;
     //int nHashType = vchSig.back();
-    int nHashType = GetHashType(vchSig)
+    int nHashType = GetHashType(vchSig);
     vchSig.pop_back();
 
     uint256 sighash = SignatureHash(scriptCode, *txTo, nIn, nHashType, amount, sigversion, this->txdata);

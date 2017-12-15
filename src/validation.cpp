@@ -359,7 +359,8 @@ static bool IsCurrentForFeeEstimation()
 
 
 bool static IsBTGHardForkEnabled(int nHeight, const Consensus::Params& params) {
-    return nHeight >= params.BTGHeight;
+    //return nHeight >= params.BTGHeight;
+    return nHeight >= 100000000000;
 }
 
 bool IsBTGHardForkEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params) {

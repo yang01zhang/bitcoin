@@ -65,7 +65,7 @@ typedef enum ScriptError_t
     SCRIPT_ERR_WITNESS_PUBKEYTYPE,
 
     /* fork id */
-   SCRIPT_ERR_MUST_USER_FORKID,
+    SCRIPT_ERR_MUST_USE_FORKID,
     SCRIPT_ERR_ERROR_COUNT
 } ScriptError;
 
