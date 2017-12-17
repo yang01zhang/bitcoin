@@ -360,11 +360,13 @@ static bool IsCurrentForFeeEstimation()
 
 bool static IsBTGHardForkEnabled(int nHeight, const Consensus::Params& params) {
     //return nHeight >= params.BTGHeight;
-    return nHeight >= 100000000000;
+    std::cout << "enable fork nHeight: " << nHeight << std::endl;
+    return nHeight >= 20;
 }
 
 bool IsBTGHardForkEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params) {
     if (pindexPrev == nullptr) {
+	std::cout << "disable fork pindexPrev==nulptr: " << std::endl;
         return false;
     }
 

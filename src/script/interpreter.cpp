@@ -12,6 +12,7 @@
 #include "pubkey.h"
 #include "script/script.h"
 #include "uint256.h"
+#include <iostream>
 
 typedef std::vector<unsigned char> valtype;
 
@@ -230,6 +231,7 @@ bool CheckSignatureEncoding(const std::vector<unsigned char> &vchSig, unsigned i
 
         bool requiresForkId = !AllowsNonForkId(flags);
         bool usesForkId = UsesForkId(vchSig);
+	std::cout << "req ForkID: " << requiresForkId << "  use ForkID: " << usesForkId << std::endl;
         if (requiresForkId && !usesForkId)
             return set_error(serror, SCRIPT_ERR_SIG_HASHTYPE);
     }
